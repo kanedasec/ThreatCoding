@@ -20,7 +20,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         
-      - name: Run a multi-line script
+      - name: Install and run threatspec
         run: |
           sudo apt-get install graphviz
           git clone https://github.com/threatspec/threatspec.git
@@ -36,6 +36,13 @@ jobs:
         with:
          name: threatmodel
          path: ./.github/threatmodel
+     
+      - name: Commit artifacts
+      run: | 
+        git config --global user.name "kanedasec"
+        git config --global user.email "vernon.acs@gmail.com"
+        git add ThreatModel.md ThreatModel.md.png
+        git commit -m "Automated threat modeling artifacts"
 
           
           
