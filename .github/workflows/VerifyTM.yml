@@ -34,7 +34,7 @@ jobs:
           cd ..
           threatspec init
           threatspec run
-          threatsspec report
+          threatspec report
           
           
           
