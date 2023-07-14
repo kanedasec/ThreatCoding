@@ -3,12 +3,12 @@ name: Threatspec
 
 on:
   push:
-    paths-ignore:
+    paths:
       - '.github/threatmodel/threatmodel'
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-    paths-ignore:
+    paths:
       - '.github/threatmodel/threatmodel'
 
   workflow_dispatch:
