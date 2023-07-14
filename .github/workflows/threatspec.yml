@@ -4,7 +4,7 @@ name: Threatspec
 on:
   push:
     paths:
-      - '.github/threatmodel/threatmodel'
+      - '.github/threatmodel/threatmodel.txt'
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
@@ -17,15 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check for specific file
-        run: |
-          if [[ $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }}) =~ ".github/threatmodel/threatmodel.txt" ]]; then
-            echo "Specific file found. Starting build..."
-          else
-            echo "Specific file not found. Skipping build."
-            exit 78
-          fi
-        
+            
       - name: Run a multi-line script
         run: |
           git clone https://github.com/threatspec/threatspec.git
