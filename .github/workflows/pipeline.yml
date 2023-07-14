@@ -25,7 +25,7 @@ jobs:
             echo "Specific file found. Starting build..."
           else
             echo "Specific file not found. Skipping build."
-            exit 78
+            exit 1
           fi
           
       - uses: AppThreat/sast-scan-action@master
