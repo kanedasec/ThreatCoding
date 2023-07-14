@@ -9,7 +9,7 @@ on:
   pull_request:
     branches: [ "main" ]
     paths:
-      - '.github/threatmodel/threatmodel'
+      - '.github/threatmodel/threatmodel.txt'
 
   workflow_dispatch:
 
@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Check for specific file
         run: |
-          if [[ $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }}) =~ ".github/threatmodel/threatmodel" ]]; then
+          if [[ $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }}) =~ ".github/threatmodel/threatmodel.txt" ]]; then
             echo "Specific file found. Starting build..."
           else
             echo "Specific file not found. Skipping build."
