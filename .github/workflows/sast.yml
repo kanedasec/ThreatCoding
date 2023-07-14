@@ -1,16 +1,16 @@
 name: SAST
 
 on:
-   push:
-     paths-ignore:
+  push:
+    paths-ignore:
       - 'README.md'
       - '.github'
-     branches: [ "main" ]
-    pull_request:
-      branches: [ "main" ]
-      paths-ignore:
-       - 'README.md'
-       - '.github'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - 'README.md'
+      - '.github'
 
   workflow_dispatch:
 
