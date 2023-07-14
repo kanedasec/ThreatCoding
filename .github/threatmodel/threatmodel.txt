@@ -1,4 +1,4 @@
-#test
+
 @component MyApp:Web:Login
 @threat #sqli
 @mitigates MyApp:Web:Login against Cross-site Request Forgery with CSRF token generated provided by framework
