@@ -5,9 +5,13 @@ on:
   push:
     paths:
       - '.github/threatmodel/threatmodel.txt'
-    branches: [ "main" ]
+    branches:
+      - main
+      - Dev
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - Dev
     paths:
       - '.github/threatmodel/threatmodel.txt'
 
