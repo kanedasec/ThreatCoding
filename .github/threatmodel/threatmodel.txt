@@ -1,4 +1,5 @@
-
+#Name: Projeto Protótipo
+#Description: Projeto utilizando o githubactions como pipeline para subir o threatmodelling de um projeto
 @component MyApp:Web:Login
 @threat #sqli
 @mitigates MyApp:Web:Login against Cross-site Request Forgery with CSRF token generated provided by framework
