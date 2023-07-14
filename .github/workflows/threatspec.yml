@@ -18,16 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         
       - name: Run a multi-line script
         run: |
-          ls
-          apt-get install -y graphviz
           git clone https://github.com/threatspec/threatspec.git
           cd threatspec
           pip install threatspec
-          cd ..
+          cd ../.github/threatmodel/
           threatspec init
           threatspec run
       - uses: actions/upload-artifact@v1
