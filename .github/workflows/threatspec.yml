@@ -39,8 +39,7 @@ jobs:
           git config --global user.name "kanedasec"
           git config --global user.email "vernon.acs@gmail.com"
           git add ThreatModel.md ThreatModel.md.png
-          git commit -m "Automated threat modeling artifacts"
-          git push
+      
           
       - uses: actions/upload-artifact@v1
         with:
