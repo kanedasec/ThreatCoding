@@ -22,11 +22,12 @@ jobs:
         
       - name: Run a multi-line script
         run: |
-          pwd
           git clone https://github.com/threatspec/threatspec.git
           cd threatspec
           pip install threatspec
           cd ../.github/threatmodel/
+          pwd
+          ls
           threatspec init
           threatspec run
           pwd
