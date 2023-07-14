@@ -2,10 +2,11 @@ name: SAST
 
 on:
    push:
-    branches: [ "main" ]
-    paths-ignore:
+     paths-ignore:
       - 'README.md'
       - '.github'
+     branches: [ "main" ]
+    
   pull_request:
     branches: [ "main" ]
     paths-ignore:
