@@ -26,9 +26,9 @@ jobs:
           cd threatspec
           pip install threatspec
           cd ../.github/threatmodel/
-          name=$(grep -oP '(?<=#Name: ).*' threatmodel.txt) && description=$(grep -oP '(?<=#Description: ).*' threatmodel.txt) && sed -i "s/\(^\s*name:\s*\)\".*\"/\1\"$name\"/; s/\(^\s*description:\s*\)\".*\"/\1\"$description\"/" threatspec.yaml
           threatspec init
           threatspec run
+          name=$(grep -oP '(?<=#Name: ).*' threatmodel.txt) && description=$(grep -oP '(?<=#Description: ).*' threatmodel.txt) && sed -i "s/\(^\s*name:\s*\)\".*\"/\1\"$name\"/; s/\(^\s*description:\s*\)\".*\"/\1\"$description\"/" threatspec.yaml
           
       - uses: actions/upload-artifact@v1
         with:
