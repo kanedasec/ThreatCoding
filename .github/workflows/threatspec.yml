@@ -22,16 +22,19 @@ jobs:
         
       - name: Run a multi-line script
         run: |
+          pwd
           git clone https://github.com/threatspec/threatspec.git
           cd threatspec
           pip install threatspec
           cd ../.github/threatmodel/
           threatspec init
           threatspec run
+          pwd
+          ls -la
       - uses: actions/upload-artifact@v1
         with:
          name: threatmodel.json
-         path: ./threatmodel/
+         path: ./
 
           
           
