@@ -23,8 +23,8 @@ jobs:
           threatspec run
       - uses: actions/upload-artifact@v1
         with:
-         name: reports
-         path: reports
+         name: threatmodel/threatmodel.json
+         path: ./
 
           
           
