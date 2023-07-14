@@ -1,0 +1,29 @@
+name: VerifyThreatModelling
+    
+
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+      - '.github/workflows/**'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - 'README.md'
+      - '.github/workflows/**'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for specific file
+        run: |
+          if [[ $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }}) =~ ".github/threatmodel/threatmodel" ]]; then
+            echo "Specific file found. Starting build..."
+          else
+            echo "Specific file not found. Skipping build."
+            exit 78
+          fi
