@@ -36,18 +36,5 @@ jobs:
         with:
           name: reports
           path: reports
-      
-      - name: Run a multi-line script
-        run: |
-          git clone https://github.com/threatspec/threatspec.git
-          cd threatspec
-          pip install threatspec
-          cd ..
-          threatspec init
-          threatspec run
-      - uses: actions/upload-artifact@v1
-        with:
-         name: threatmodel.json
-         path: ./threatmodel/
-         
+     
          
