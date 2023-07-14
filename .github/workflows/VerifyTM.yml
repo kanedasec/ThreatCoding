@@ -1,17 +1,18 @@
 name: VerifyThreatModelling
-inputs:
-  src:
-    description: "Source directory to scan. Defaults to workspace"
-    required: false
-    default: "/github/workspace"
-  output:
-    description: "Output directory for the generated reports. Defaults to reports"
-    required: false
-    default: "/github/workspace/reports"
+    
 
 on:
   push:
     branches: [ "main" ]
+    inputs:
+      src:
+        description: "Source directory to scan. Defaults to workspace"
+        required: false
+        default: "/github/workspace"
+      output:
+        description: "Output directory for the generated reports. Defaults to reports"
+        required: false
+        default: "/github/workspace/reports"
   pull_request:
     branches: [ "main" ]
 
