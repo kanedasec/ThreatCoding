@@ -1,61 +1,87 @@
-#Name: Projeto Protótipo
-#Description: Projeto utilizando o githubactions como pipeline para subir o threatmodelling de um projeto
-#teste
-# Components
+#Name: Fast-food app
+#Description: Uma aplicação para recebimento de pedidos e realização de pegamento de maneira online. 
 
-## External
-@component External:User (#user)
-
-## Network 
-@component MyApp:Web:LoadBalancer (#lb)
-@component MyApp:Web:WebServer (#web)
-@component MyApp:Web:AppServer (#app)
-@component MyApp:Web:DataCache (#cache)
-@component MyApp:Web:Database (#db)
-
-## Dataflow
-@component MyApp:Auth:Login (#login)
-@component MyApp:Auth:PasswordReset (#password)
-@component MyApp:Product:Search (#product_search)
-@component MyApp:Product:Basket (#product_basket)
-@component MyApp:Product:Payment (#product_payment)
+#------------------------------------------------User Stories-----------------------------------------------------#
 
 
-# Connections
+#Pedido
+#Os clientes são apresentados a uma interface de seleção na qual podem optar por se identificarem via CPF, se cadastrarem com nome, e-mail ou não se identificar, podendo montar o combo.
 
-## Network
-@connect #user to #lb with HTTPS on 443
-@connect #lb to #web with HTTPS on 8443
-@connect #web to #app with HTTPS on 8443
-@connect #app to #cache with TCP/6379
-@connect #app to #db with TCP/3306
+#"Eu, como cliente, quero acessar a uma interface web, escolher se carado me cadastrar ou não, e escolher entre os pedidos possíveis."
 
-## Dataflow
-@connect #user to #login with submits credentials
-@connect #login to #user with auth session token on success
+#Pagamento
 
-@connect #user to #product_search with search by keyword
-@connect #product_search to #user with list of matching products
+#O sistema deverá possuir uma opção de pagamento integrado para MVP. A forma de pagamento oferecida será via QRCode do Mercado pago
 
-@connect #user to #product_basket with adds desired products to basket
-@connect #user to #product_payment with payment of products in basket
-@connect #product_payment to #user with payment summary shown on success
+#"Eu, como cliente, quero acessar o banco de meu celular, copiar o QRCode e fazer o pagamento"
 
 
-# Threat Library
+#------------------------------------------------Componentes-----------------------------------------------------#
 
-@threat SQL Injection (#sql):
-  description: An attacker can inject malicious SQL statements, typically through web form components, and make changes or retrieve information from the backend database.
+#-------------Externo-----------#
 
-@threat Man In The Middle (#mitm):
-  description: An attacker can intercept unsecured traffic and can obtain sensitive information or tamper with the connection.
+@component Externo:Usuário (#user)
+@component Api:MercadoLivre:QRCode (#payment_api)
 
-@threat Authentication token theft (#token_theft):
-  description: An attacker can steal or otherwise obtain a sensitive authentication token and can therefore spoof the legitimate user
+#-------------Rede--------------#
 
-# Threats
+@component FastFoodApp:Web:WebServer (#Nginx)
+@component FastFoodApp:Web:AppServer (#Websphere)
+@component FastFoodApp:Web:BaseDeDados (#Mongodb)
 
-@exposes #app to #sql with possible lack of input validation and sanitization
-@exposes #cache to #mitm with lack of encryption
-@exposes #db to #mitm with lack of encryption
-@transfers #token_theft from #login to #user with user must secure and protect auth token
+#-------------Dataflow----------#
+
+@component FastFoodApp:Auth:Login (#login)
+@component FastFoodApp:Auth:PasswordReset (#password)
+@component FastFoodApp:Produto:Busca (#product_search)
+@component FastFoodApp:Produto:Carrinho (#product_basket)
+@component FastFoodApp:Produto:Pagamento (#product_payment)
+
+#------------------------------------------------Conexões--------------------------------------------------------#
+
+#-------------Rede--------------#
+
+@connect #user to #Nginx with HTTPS on 443
+@connect #Nginx to #Websphere with HTTPS on 8443
+@connect #Websphere to #Mongodb with TCP/3306
+
+#-------------Dataflow----------#
+
+@connect #user to #login with credencial login/password
+@connect #login to #user with auth token de sessão
+
+@connect #user to #product_search with digitar busca
+@connect #product_search to #user with lista de produtos
+
+@connect #user to #product_basket with adiciona produtos
+@connect #user to #product_payment with paga produtos
+@connect #product_payment to #payment_api with informações de pagamento
+@connect #payment_api to #product_payment with informações de aprovação
+@connect #product_payment to #user with aviso de sucesso no pagamento
+
+#------------------------------------------------Ameaças---------------------------------------------------------#
+
+#-------------Biblioteca-------#
+
+@threat Injeção de SQL (#sqli):
+  description: Manipulação maliciosa de uma consulta SQL para explorar vulnerabilidades em um sistema de banco de dados.
+@threat Man in the Middle (#mitm):
+  description: Interceptação e manipulação não autorizada de comunicações entre dois pontos para obter acesso indevido a informações sensíveis.
+@threat Cross Side Script (#xss):
+  description: Inserção de código malicioso em páginas da web para explorar vulnerabilidades em navegadores e executar scripts indesejados nos dispositivos dos usuários.
+@threat Sequestro de sessão (#session_hijack):
+  description: Roubo de sessão de usuário por meio da interceptação e reutilização não autorizada de tokens de autenticação, permitindo ao invasor assumir o controle da sessão ativa do usuário.
+
+#-------------Ameaças----------#
+
+@expose #login to #sqli with falta de validação de inputs
+@expose #login to #session_hijack with utilização de algorítmo fraco para geração de tokens
+@expose #product_search to #sqli with falta de validação de inputs
+@expose #product_search to #xss with falta de validação de inputs
+@expose #product_payment to #mitm with comunicação não encriptada com api
+
+
+
+
+
+
