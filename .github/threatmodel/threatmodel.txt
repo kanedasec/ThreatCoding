@@ -7,13 +7,13 @@
 #Pedido
 #Os clientes são apresentados a uma interface de seleção na qual podem optar por se identificarem via CPF, se cadastrarem com nome, e-mail ou não se identificar, podendo montar o combo.
 
-#"Eu, como cliente, quero acessar a uma interface web, escolher se carado me cadastrar ou não, e escolher entre os pedidos possíveis."
+#Eu, como cliente, quero acessar a uma interface web, escolher se carado me cadastrar ou não, e escolher entre os pedidos possíveis.
 
 #Pagamento
 
 #O sistema deverá possuir uma opção de pagamento integrado para MVP. A forma de pagamento oferecida será via QRCode do Mercado pago
 
-#"Eu, como cliente, quero acessar o banco de meu celular, copiar o QRCode e fazer o pagamento"
+#Eu, como cliente, quero acessar o banco de meu celular, copiar o QRCode e fazer o pagamento
 
 
 #------------------------------------------------Componentes-----------------------------------------------------#
@@ -65,10 +65,13 @@
 
 @threat Injeção de SQL (#sqli):
   description: Manipulação maliciosa de uma consulta SQL para explorar vulnerabilidades em um sistema de banco de dados.
+
 @threat Man in the Middle (#mitm):
   description: Interceptação e manipulação não autorizada de comunicações entre dois pontos para obter acesso indevido a informações sensíveis.
+
 @threat Cross Side Script (#xss):
   description: Inserção de código malicioso em páginas da web para explorar vulnerabilidades em navegadores e executar scripts indesejados nos dispositivos dos usuários.
+
 @threat Sequestro de sessão (#session_hijack):
   description: Roubo de sessão de usuário por meio da interceptação e reutilização não autorizada de tokens de autenticação, permitindo ao invasor assumir o controle da sessão ativa do usuário.
 
