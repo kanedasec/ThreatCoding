@@ -25,9 +25,9 @@
 
 #-------------Rede--------------#
 
-@component FastFoodApp:Web:WebServer (#Nginx)
-@component FastFoodApp:Web:AppServer (#Websphere)
-@component FastFoodApp:Web:BaseDeDados (#Mongodb)
+@component FastFoodApp:Web:WebServer (#nginx)
+@component FastFoodApp:Web:AppServer (#websphere)
+@component FastFoodApp:Web:BaseDeDados (#mongodb)
 
 #-------------Dataflow----------#
 
@@ -41,9 +41,9 @@
 
 #-------------Rede--------------#
 
-@connect #user to #Nginx with HTTPS on 443
-@connect #Nginx to #Websphere with HTTPS on 8443
-@connect #Websphere to #Mongodb with TCP/3306
+@connect #user to #nginx with HTTPS on 443
+@connect #nginx to #websphere with HTTPS on 8443
+@connect #websphere to #mongodb with TCP/3306
 
 #-------------Dataflow----------#
 
