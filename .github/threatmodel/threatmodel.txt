@@ -1,5 +1,6 @@
 #Name: Fast-food app
 #Description: Uma aplicação para recebimento de pedidos e realização de pegamento de maneira online. 
+#Poc
 
 #------------------------------------------------User Stories-----------------------------------------------------#
 
